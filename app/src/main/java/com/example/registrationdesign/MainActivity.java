@@ -3,12 +3,42 @@ package com.example.registrationdesign;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+
+    EditText number1, number2;
+    Button btnPlus, btnMinus;
+    Button btnMulti, btnDivide;
+    TextView tvResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.mini_calculator);
+
+        number1 = findViewById(R.id.ed_number1);
+        number2 = findViewById(R.id.ed_number2);
+
+        btnPlus = findViewById(R.id.btn_plus);
+        btnMinus = findViewById(R.id.btn_minus);
+        btnMulti = findViewById(R.id.btn_multi);
+        btnDivide = findViewById(R.id.btn_divide);
+
+        tvResult = findViewById(R.id.tv_Result);
+
+
+    }
+
+    public void btnPlusClicked(View view) {
+        int res = Integer.parseInt(number1.getText().toString()) + Integer.parseInt(number2.getText().toString());
+        tvResult.setText("Result: "+res);
+    }
+    public void btnMinusClicked(View view) {
+        int res = Integer.parseInt(number1.getText().toString()) - Integer.parseInt(number2.getText().toString());
+        tvResult.setText("Result: " + res);
     }
 }
