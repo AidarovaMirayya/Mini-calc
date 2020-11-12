@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     EditText number1, number2;
     Button btnPlus, btnMinus;
@@ -30,15 +30,29 @@ public class MainActivity extends AppCompatActivity {
 
         tvResult = findViewById(R.id.tv_Result);
 
+        btnPlus.setOnClickListener(this);
+        btnMinus.setOnClickListener(this);
+        btnDivide.setOnClickListener(this);
+        btnMulti.setOnClickListener(this);
 
     }
 
-    public void btnPlusClicked(View view) {
-        int res = Integer.parseInt(number1.getText().toString()) + Integer.parseInt(number2.getText().toString());
-        tvResult.setText("Result: "+res);
-    }
-    public void btnMinusClicked(View view) {
-        int res = Integer.parseInt(number1.getText().toString()) - Integer.parseInt(number2.getText().toString());
+    public void onClick(View view) {
+        int res = 0;
+        if (view.getId() == R.id.btn_plus) {
+            res = Integer.parseInt(number1.getText().toString()) + Integer.parseInt(number2.getText().toString());
+        } else if (view.getId() == R.id.btn_minus)
+            res = Integer.parseInt(number1.getText().toString()) - Integer.parseInt(number2.getText().toString());
+        else if (view.getId() == R.id.btn_multi) {
+            res = Integer.parseInt(number1.getText().toString())
+                    * Integer.parseInt(number2.getText().toString());
+        } else {
+            res = Integer.parseInt(number1.getText().toString())
+                    / Integer.parseInt(number2.getText().toString());
+
+        }
+
+
         tvResult.setText("Result: " + res);
     }
 }
